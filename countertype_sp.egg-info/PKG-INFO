@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: countertype-sp
+Version: 0.1.3
+Summary: Your package description here
+Author: Suresh Polai
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# counttypes
+
+Count types in a list - int, float, str, bool, list, set, dict, tuple
+
+## Example
+
+```python
+from countertypes import CountTypes
+
+data = [1, 2.2, 'hello', [1, 2], {'a': 1}]
+counter = CountTypes(data)
+print(counter.NonZeroTotal())

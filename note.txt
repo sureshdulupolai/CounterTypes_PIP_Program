@@ -1,0 +1,25 @@
+C:\Users\user\AppData\Roaming\Python\Python313\Scripts
+
+twine --version
+wheel --version
+pip --version
+
+
+// missing in wheel 
+wheel --version
+
+python -m wheel version
+
+python -m build
+
+twine upload dist/*
+
+
+// -----------------------------------------------------------------
+after update run this code
+
+python -m build
+twine upload dist/*
+
+- note
+change version
