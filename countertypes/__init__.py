@@ -223,38 +223,60 @@ class counterTypes:
         else:
             newData = valueJSON  # already clean or not wrapped
         return newData
-    
-    # create a stringFy() for one particular
 
-    # create a find function
-    # element count function
-    # replace function
-    # delete function
-    # str to int, float
-    # multiple nested list covert into one list
-    # single list ko chunks mai kar sake chunks([1,2,3,4],2) -> [[1,2], [3,4]]
-    
+    def compareEachElement(first, second):
+        if (type(first) == list) and (type(second) == list):
+            if all(isinstance(x, (int, float)) for x in first):
+                if all(isinstance(x, (int, float)) for x in second):
+                    if len(first) == len(second):
+                        valueOne = 0
+                        valueTwo = 0
+                        for i in range(len(first)):
+                            if first[i] > second[i]:
+                                valueOne += 1
+                            elif first[i] < second[i]:
+                                valueTwo += 1
 
+                        if valueOne > valueTwo:
+                            return 'First list element is Greater, Then second list element.'
+                        elif valueOne < valueTwo:
+                            return 'Second list element is Greater, Then first list element.'
+                        elif valueOne == valueTwo:
+                            return 'Both List Element Has Same Number'
+                        
+                    else:
+                        lenOfFirst, lenOfSecond = len(first), len(second)
+                        if lenOfFirst > lenOfSecond:
+                            return 'first list has more element, comparing with second.'
+                        else:
+                            return 'second list has more element, comparing with first.'
+                else:
+                    return 'Element type should be Integer or Float, In second list.'
+            else:
+                return 'Element type should be Integer or Float, In first list.'
+        else:
+            return 'only list type is supported'
 
-data = [1, 2.2, 'hello', [1, 2], {'a': 1},  9, 18, {'a': 4}, {'a': 1}, [1, 15, 0, 8], (1, 8), 9, (89, 9), False, True, {10, 20}, True]
-counter = counterTypes(data)
-# print(counter.NonZeroTotal())
-# print(counter.listSum('bool'))
-# print(counter.lstOfBool)
-# print(counter.getMaxDataType())
-# print(counter.getMinDataType())
-# print(counter.getCount())
-# print()
-# print(counter.get())
-# print(counter.sumOfNumeric())
-# print(counter.stringifyAll())
-# a1 = counterTypes.start()
-# print(counterTypes.end(a1))
-# print(counter)
-print(counter.stringFy())
-JSON_Text = counter.JSON()
-print(JSON_Text)
-print(counterTypes.UnJSON(JSON_Text))
+    def reverse(reverse = False):
+        ...
 
-# statusOne = "`('Hi',  'I', 'am',  'Suresh')`"
-# print(type(counterTypes.UnJSON(statusOne)))
+    def numeriFy():
+        ...
+
+    def find():
+        ...
+
+    def count():
+        ...
+
+    def replace():
+        ...
+
+    def delete():
+        ...
+
+    def oneList():
+        ...
+
+    def chunks():
+        ...

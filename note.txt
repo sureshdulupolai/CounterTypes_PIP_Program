@@ -23,3 +23,25 @@ twine upload dist/*
 
 - note
 change version
+
+
+
+// learn
+
+from typing import Any   # Type hinting ke liye
+from ast import AST     # Python ke abstract syntax tree ke liye
+
+def parse_node(node_or_string: str | AST) -> Any:
+    # Agar input ek string ho
+    if isinstance(node_or_string, str):
+        print("String mila")
+        return node_or_string.upper()  # String ko uppercase karke return karo
+
+    # Agar input AST object ho
+    elif isinstance(node_or_string, AST):
+        print("AST mila")
+        return node_or_string   # AST ko waise hi return karo
+
+# Function call examples:
+print(parse_node("hello"))   # Output: "HELLO"
+print(parse_node(AST()))     # Output: AST object (prints "AST mila")
