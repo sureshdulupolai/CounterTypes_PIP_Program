@@ -171,7 +171,7 @@ class counterTypes:
     
     def get(self):
         counts = {
-            'int': self.lstOfLst,
+            'int': self.lstOfInt,
             'float': self.lstOfFloat,
             'str': self.lstOfString,
             'bool': self.lstOfBool,
@@ -257,26 +257,131 @@ class counterTypes:
         else:
             return 'only list type is supported'
 
-    def reverse(reverse = False):
-        ...
+    def reverse(self, reverse = True):
+        if reverse:
+            return [i for i in self.value[::-1]]
+        elif reverse == False:
+            return self.value
+        else:
+            return f'reverse={reverse} type error'
 
-    def numeriFy():
-        ...
+    def numeriFy(self):
+        newList = []
+        for DataInList in self.value:
+            if DataInList.isalpha():
+                newList.append(DataInList)
+            elif '.' in DataInList:
+                newList.append(float(DataInList))
+            elif DataInList.isdigit():
+                newList.append(int(DataInList))
+        return newList
 
-    def find():
-        ...
+    def boolUnCondition(self):
+        newList = []
+        for DataIn in self.value:
+            if DataIn == 'True':
+                    newList.append(bool(True))
+            elif DataIn == 'False':
+                newList.append(bool(False))
+            else:
+                newList.append(DataIn)
+        return newList
+    
+    def boolCondtion(self, Truekey, FalseKey):
+        newList = []
+        for DataIn in self.value:
+            if DataIn == Truekey:
+                    newList.append(bool(True))
+            elif DataIn == FalseKey:
+                newList.append(bool(False))
+            else:
+                newList.append(DataIn)
+        return newList
 
-    def count():
-        ...
+    def booliFy(self, condition = False, Truekey = 'True', FalseKey = 'False'):
+        if condition:
+            return self.boolCondtion(Truekey = Truekey, FalseKey= FalseKey)
+        else:
+            return self.boolUnCondition()
 
-    def replace():
-        ...
+    def formatic(self, key = False):
+        newlist = []
+        if key:
+            newlist.append(self.get())
+        else:
+            newlist = [] + self.lstOfInt + self.lstOfFloat + self.lstOfBool + self.lstOfString + self.lstOfLst + self.lstOfTuple + self.lstOfSet + self.lstOfDict
+        return newlist
+    
+    def fc(self, key, check):
+        fd = 0; count = 0
+        for findElement in self.value:
+            if key == findElement:
+                count += 1
+                fd += 1
 
-    def delete():
-        ...
+        if check == 'Find':
+            if fd == 0:
+                return f'No Key={key} Not Found Inside List.'
+            else:
+                return f'Yes!, Key={key} existing inside List.'
+            
+        elif check == 'Count':
+            if fd == 0:
+                return f'No Key={key} Not Found Inside List.'
+            else:
+                return f'Yes!, Key={key} existing inside List and count = {count}.'
 
-    def oneList():
-        ...
+    def find(self, key):
+        return self.fc(key=key, check='Find')
 
-    def chunks():
-        ...
+    def count(self, key):
+        return self.fc(key=key, check='Count')
+        
+    def replace(self, re, key):
+        newList = []
+        for listEle in self.value:
+            if listEle == re:
+                newList.append(key)
+            else:
+                newList.append(listEle)
+        return newList
+
+    def remove(self, key):
+        newList = []
+        for listElement in self.value:
+            if listElement != key:
+                newList.append(listElement)
+        return newList
+
+    def oneList(self):
+        def flatten(data):
+            result = []
+            for item in data:
+                if isinstance(item, list):
+                    result.extend(flatten(item))
+                else:
+                    result.append(item)
+            return result
+        return flatten(self.value)
+
+    def chunks(self, pair):
+        chunked = []
+        temp = self.value[:]  # original list ka copy
+
+        # Agar length divisible nahi hai, to 0 pad karke complete karo
+        while len(temp) % pair != 0:
+            temp.append(0)
+
+        # Chunk banate jao
+        for i in range(0, len(temp), pair):
+            chunked.append(temp[i:i + pair])
+
+        if len(chunked) == 1:
+            chunkeds = []
+            for i in chunked:
+                for j in i:
+                    chunkeds.append(j)
+            return chunkeds
+        
+        else:
+            return chunked

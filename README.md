@@ -5,8 +5,96 @@ Count types in a list - int, float, str, bool, list, set, dict, tuple
 ## Example
 
 ```python
-from countertypes import CountTypes
+from countertypes import counterTypes
 
-data = [1, 2.2, 'hello', [1, 2], {'a': 1}]
-counter = CountTypes(data)
+data = [1, 2.2, 'hello', [1, 2], {'a': 1},  9, 18, {'a': 4}, {'a': 1}, [1, 15, 0, 8], (1, 8), 9, (89, 9), False, True]
+counter = counterTypes(data)
+
+# check non zero datatype present inside list
 print(counter.NonZeroTotal())
+
+# sum of all datatype
+print(counter.listSum('bool'))
+
+# get a list of all datatypes
+print(counter.lstOfBool)
+
+# get a max datatype
+print(counter.getMaxDataType())
+
+# get a min datatype
+print(counter.getMinDataType())
+
+# get all datatypes count in dict form
+print(counter.getCount())
+
+# get all datatype list, in dict form
+print(counter.get())
+
+# sum of all (int, float, bool) list
+print(counter.sumOfNumeric())
+
+# get all (int, float, bool, string) in string form, inside a dict
+print(counter.stringifyAll())
+
+# get seccond to finish, the program
+a1 = counterTypes.start()
+print(counterTypes.end(a1))
+
+# get a particular object convert into string
+print(counter.stringFy())
+
+# convert a object into JSON formate
+JSON_Text = counter.JSON()
+print(JSON_Text)
+
+# Convert a JSON formate into Python Code
+print(counterTypes.UnJSON(JSON_Text))
+statusOne = "`('Hi',  'I', 'am',  'Suresh')`"
+print(counterTypes.UnJSON(statusOne))
+
+#  compare each element inside 2 list with same len
+value1 = counter.lstOfInt
+lst = [1, 4, 5, 4.5]
+print(counterTypes.compareEachElement(value1, lst))
+
+# reversing a list, when reverse=True
+print(counter.reverse())
+
+
+lst = ['1.2', '3', '9.0', '10', 'suresh', '18', 'Bool', 'True']
+counter1 = counterTypes(lst)
+# convert a string into (int or float), if data in numeric form.
+counterOneData = counter1.numeriFy()
+print(counterOneData)
+
+
+counterTwoData = counterTypes(counterOneData)
+# convert a string to "bool", by default value is "True" and "False". 
+# use can set a key to convert a real data into bool value if key is exist inside list
+print(counterTwoData.booliFy(condition=True, FalseKey=3))
+
+# get value in order (int, float, bool, string, list, tuple, set, dict). if key=flase
+# if key=True, then you can get a list carring a dict of all datatype list value. like get()
+print(counterTwoData.formatic(key=True))
+
+# find a value inside a list
+print(counterTwoData.find(key=0))
+
+# get a count of value inside list
+print(counterTwoData.count(key=3))
+
+# replace a old element with new element
+print(counterTwoData.replace(re=3, key=10))
+
+# remove a element if exist
+print(counterTwoData.remove(key=3))
+
+lst = [[1,2, [3, 4], [10, 1], [10, [0, 9], [0, 8]], [90]]]
+counterThreeData = counterTypes(lst)
+
+# convert a nested list into a single list form
+print(counterThreeData.oneList())
+
+# divide a list into a pair
+print(counterTwoData.chunks(pair=3))

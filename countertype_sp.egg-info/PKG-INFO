@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: countertype-sp
-Version: 0.1.4
+Version: 0.1.5
 Summary: Your package description here
 Author: Suresh Polai
 License: MIT
@@ -26,8 +26,48 @@ Count types in a list - int, float, str, bool, list, set, dict, tuple
 ## Example
 
 ```python
-from countertypes import CountTypes
+from countertypes import counterTypes
 
-data = [1, 2.2, 'hello', [1, 2], {'a': 1}]
-counter = CountTypes(data)
+data = [1, 2.2, 'hello', [1, 2], {'a': 1},  9, 18, {'a': 4}, {'a': 1}, [1, 15, 0, 8], (1, 8), 9, (89, 9), False, True]
+counter = counterTypes(data)
 print(counter.NonZeroTotal())
+print(counter.listSum('bool'))
+print(counter.lstOfBool)
+print(counter.getMaxDataType())
+print(counter.getMinDataType())
+print(counter.getCount())
+print(counter.get())
+print(counter.sumOfNumeric())
+print(counter.stringifyAll())
+
+a1 = counterTypes.start()
+print(counterTypes.end(a1))
+
+print(counter.stringFy())
+JSON_Text = counter.JSON()
+print(JSON_Text)
+print(counterTypes.UnJSON(JSON_Text))
+
+statusOne = "`('Hi',  'I', 'am',  'Suresh')`"
+print(type(counterTypes.UnJSON(statusOne)))
+value1 = counter.lstOfInt
+lst = [1, 4, 5, 4.5]
+print(counterTypes.compareEachElement(value1, lst))
+print(counter.reverse())
+
+lst = ['1.2', '3', '9.0', '10', 'suresh', '18', 'Bool', 'True']
+counter1 = counterTypes(lst)
+counterOneData = counter1.numeriFy()
+print(counterOneData)
+counterTwoData = counterTypes(counterOneData)
+print(counterTwoData.booliFy(condition=True, FalseKey=3))
+print(counterTwoData.formatic(key=True))
+print(counterTwoData.find(key=0))
+print(counterTwoData.count(key=3))
+print(counterTwoData.replace(re=3, key=10))
+print(counterTwoData.remove(key=3))
+
+lst = [[1,2, [3, 4], [10, 1], [10, [0, 9], [0, 8]], [90]]]
+counterThreeData = counterTypes(lst)
+print(counterThreeData.oneList())
+print(counterTwoData.chunks(pair=3))
