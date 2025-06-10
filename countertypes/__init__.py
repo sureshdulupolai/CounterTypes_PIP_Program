@@ -50,6 +50,69 @@ class counterTypes:
                 self.dct += 1
                 self.lstOfDict.append(i)
     
+    @staticmethod
+    def start():
+        current_Time = time.time()
+        return current_Time
+    
+    @staticmethod
+    def end(lastTime):
+        ActualTimeTaken = time.time() - lastTime
+        return ActualTimeTaken
+    
+    @staticmethod
+    def Author():
+        return (
+            "My name is Suresh.D.Polai, and I am a Python full stack developer with a strong interest "
+            "in building helpful and simple Python tools. I created a package called counterTypes "
+            "that allows users to input a list containing different data types such as int, float, str, "
+            "bool, list, set, tuple, and dict. The class processes the list and counts how many elements "
+            "belong to each type, while also storing them in separate sub-lists for easy access."
+        )
+    
+    @staticmethod
+    def ListSumReturn(listForm):
+        dataTypesCheck = [int, float, bool]; NoRun = 0
+        loopNo = 0; listOfTotal = []
+        for FirstStep in listForm:
+            if NoRun == 0:
+                countErrorLine = 0; totalOfBigDataType = 0
+                for step1 in FirstStep:
+                    if type(step1) in dataTypesCheck: 
+                        totalOfBigDataType += step1; countErrorLine += 1
+                    else: 
+                        listOfTotal = f"{type(step1)} Character Is Present. Start From Place '{countErrorLine + 1}', List No {loopNo}"; NoRun += 1
+                listOfTotal.append(totalOfBigDataType)
+            else:
+                break
+        return listOfTotal
+    
+    @staticmethod
+    def ListSumDictReturn(place, listForm):
+        sumValue = 0;  countEnter = 0
+        if place in listForm[0].keys():
+            for DataIn in listForm:
+                if (type(DataIn[place]) == int) or (type(DataIn[place]) == float) or (type(DataIn[place]) == bool): 
+                    sumValue += DataIn[place]; countEnter += 1
+                else: 
+                    sumValue = f"On the place '{place}', {type(DataIn[place])} Character Is Present. Start From Place '{countEnter + 1}'"; break
+            return sumValue
+        else:
+            sumValue = 'No Place Holder Found in Dict'
+            return sumValue
+    
+    @staticmethod
+    def Table(key = 2, end = 10):
+        for i in range(1, end + 1):
+            f'{key} x {i} = {key*i}'
+
+    @staticmethod
+    def TableList(key = 2, end = 10):
+        finalList = []
+        for i in range(1, end + 1):
+            finalList.append(key*i)
+        print(finalList)
+
     def NonZeroTotal(self):
         NewSet = ''
         if self.integer:
@@ -72,45 +135,6 @@ class counterTypes:
 
     def Total(self):
         return f"Int : {self.integer}\nFloat : {self.floating}\nStr : {self.string}\nbool : {self.boolean}\nlist : {self.lst}\nTuple : {self.tpl}\nSet : {self.sets}\nDict : {self.dct}"
-    
-    @staticmethod
-    def Author():
-        return (
-            "My name is Suresh Polai, and I am a Python developer with a strong interest "
-            "in building helpful and simple Python tools. I created a package called counterTypes "
-            "that allows users to input a list containing different data types such as int, float, str, "
-            "bool, list, set, tuple, and dict. The class processes the list and counts how many elements "
-            "belong to each type, while also storing them in separate sub-lists for easy access."
-        )
-    
-    def ListSumReturn(listForm):
-        dataTypesCheck = [int, float, bool]; NoRun = 0
-        loopNo = 0; listOfTotal = []
-        for FirstStep in listForm:
-            if NoRun == 0:
-                countErrorLine = 0; totalOfBigDataType = 0
-                for step1 in FirstStep:
-                    if type(step1) in dataTypesCheck: 
-                        totalOfBigDataType += step1; countErrorLine += 1
-                    else: 
-                        listOfTotal = f"{type(step1)} Character Is Present. Start From Place '{countErrorLine + 1}', List No {loopNo}"; NoRun += 1
-                listOfTotal.append(totalOfBigDataType)
-            else:
-                break
-        return listOfTotal
-    
-    def ListSumDictReturn(place, listForm):
-        sumValue = 0;  countEnter = 0
-        if place in listForm[0].keys():
-            for DataIn in listForm:
-                if (type(DataIn[place]) == int) or (type(DataIn[place]) == float) or (type(DataIn[place]) == bool): 
-                    sumValue += DataIn[place]; countEnter += 1
-                else: 
-                    sumValue = f"On the place '{place}', {type(DataIn[place])} Character Is Present. Start From Place '{countEnter + 1}'"; break
-            return sumValue
-        else:
-            sumValue = 'No Place Holder Found in Dict'
-            return sumValue
 
     def listSum(self, datatype='int', place = ''):
         if datatype.lower() == 'int':
@@ -196,21 +220,16 @@ class counterTypes:
     
     def stringFy(self):
         context = [str(i) for i in self.value]
+        self.value = context
         return context
     
-    def start():
-        current_Time = time.time()
-        return current_Time
-    
-    def end(lastTime):
-        ActualTimeTaken = time.time() - lastTime
-        return ActualTimeTaken
-    
     def JSON(self):
-        return f'`{self.value}`'
+        finalOutPut =  f'`{self.value}`'
+        self.value = finalOutPut
+        return finalOutPut
     
-    @staticmethod
-    def UnJSON(valueJSON):
+    def UnJSON(self):
+        valueJSON = self.value
         newData = None
         if isinstance(valueJSON, str) and valueJSON.startswith("`") and valueJSON.endswith("`"):
             clean_data = valueJSON[1:-1]  # remove backticks
@@ -222,6 +241,8 @@ class counterTypes:
                 newData = clean_data
         else:
             newData = valueJSON  # already clean or not wrapped
+
+        self.value = newData
         return newData
 
     def compareEachElement(first, second):
@@ -259,7 +280,8 @@ class counterTypes:
 
     def reverse(self, reverse = True):
         if reverse:
-            return [i for i in self.value[::-1]]
+            finalList = [i for i in self.value[::-1]]; self.value = finalList
+            return finalList
         elif reverse == False:
             return self.value
         else:
@@ -274,6 +296,7 @@ class counterTypes:
                 newList.append(float(DataInList))
             elif DataInList.isdigit():
                 newList.append(int(DataInList))
+        self.value = newList
         return newList
 
     def boolUnCondition(self):
@@ -300,9 +323,14 @@ class counterTypes:
 
     def booliFy(self, condition = False, Truekey = 'True', FalseKey = 'False'):
         if condition:
-            return self.boolCondtion(Truekey = Truekey, FalseKey= FalseKey)
+            finalList = self.boolCondtion(Truekey = Truekey, FalseKey= FalseKey)
+            self.value = finalList
+            return finalList
+        
         else:
-            return self.boolUnCondition()
+            finalList = self.boolUnCondition()
+            self.value = finalList
+            return finalList
 
     def formatic(self, key = False):
         newlist = []
@@ -310,6 +338,8 @@ class counterTypes:
             newlist.append(self.get())
         else:
             newlist = [] + self.lstOfInt + self.lstOfFloat + self.lstOfBool + self.lstOfString + self.lstOfLst + self.lstOfTuple + self.lstOfSet + self.lstOfDict
+        
+        self.value = newlist
         return newlist
     
     def fc(self, key, check):
@@ -344,6 +374,7 @@ class counterTypes:
                 newList.append(key)
             else:
                 newList.append(listEle)
+        self.value = newList
         return newList
 
     def remove(self, key):
@@ -351,6 +382,7 @@ class counterTypes:
         for listElement in self.value:
             if listElement != key:
                 newList.append(listElement)
+        self.value = newList
         return newList
 
     def oneList(self):
@@ -362,7 +394,10 @@ class counterTypes:
                 else:
                     result.append(item)
             return result
-        return flatten(self.value)
+        
+        finalList = flatten(self.value)
+        self.value = finalList
+        return finalList
 
     def chunks(self, pair):
         chunked = []
@@ -381,7 +416,45 @@ class counterTypes:
             for i in chunked:
                 for j in i:
                     chunkeds.append(j)
+            self.value = chunkeds
             return chunkeds
         
         else:
+            self.value = chunked
             return chunked
+
+    def find_location(self, target):
+        return self._find_location(self.value, target, path=[])
+
+    def _find_location(self, data, target, path):
+        # For lists and tuples
+        if isinstance(data, (list, tuple)):
+            for idx, item in enumerate(data):
+                result = self._find_location(item, target, path + [idx])
+                if result is not None:
+                    return result
+
+        # For sets
+        elif isinstance(data, set):
+            for item in data:
+                result = self._find_location(item, target, path + [f"set_item({repr(item)})"])
+                if result is not None:
+                    return result
+
+        # For dicts
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                # Check key
+                result = self._find_location(key, target, path + [f"key({repr(key)})"])
+                if result is not None:
+                    return result
+                # Check value
+                result = self._find_location(value, target, path + [key])
+                if result is not None:
+                    return result
+
+        # Direct match
+        elif data == target:
+            return path
+
+        return None

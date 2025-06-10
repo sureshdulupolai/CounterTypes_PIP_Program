@@ -98,3 +98,22 @@ print(counterThreeData.oneList())
 
 # divide a list into a pair
 print(counterTwoData.chunks(pair=3))
+
+# get a list of table, by default it gives for table 2, but change table using "key=table" and set "end=On"
+print(counterTypes.TableList(key=40, end=19))
+
+# printing table, in table formate "2 x 1 = 2", no need to use print, set "key" and "end"
+counterTypes.Table()
+
+# find a element location
+# nested_data = [[1, 2], [4, 5, [6, [7], 8]]]
+nested_data = [{'name' : 'suresh', 'no' : 9820646838},[1, 0, (22, 8), 0], 7]
+target_value = 'name'
+
+counter = counterTypes(nested_data)
+location = counter.find_location(target_value)
+
+if location:
+    print(f"Value {target_value} found at path: {location}")
+else:
+    print(f"Value {target_value} not found.")

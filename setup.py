@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="countertype-sp",
-    version="0.1.5",            # change version as you update
+    version="0.1.6",            # change version as you update
     description="Your package description here",
     long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
